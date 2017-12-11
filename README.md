@@ -1,6 +1,6 @@
 Power BI refresher
 ======
-Script for automation of refreshing Power BI workbooks built with pywinauto.
+Script for automation of refreshing Power BI workbooks.  Built on Python 3.6 and pywinauto.
 
 Developed for Power BI Desktop 2.52.4921.682 64-bit (november 2017) on Windows 10 with English and Czech locale. Other locales should work as well but they haven't been tested.
 
@@ -23,6 +23,9 @@ where <WORKBOOK> is path to .pbix file
       <WORKSPACE> is name of online Power BI service work space to publish in. Default is My workspace
 ```
 
+See how it works
+-----
+[![pbixrefresher](http://img.youtube.com/vi/8HSK_-1ULro/0.jpg)](https://www.youtube.com/watch?v=8HSK_-1ULro "pbixrefresher")
 
 Bug reporting
 -----
