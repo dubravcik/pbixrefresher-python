@@ -67,7 +67,7 @@ win.wait("enabled", timeout = 300)
 
 # Publish
 print("Publish")
-type_keys("%y01y27", win)
+type_keys("%y01y25", win)
 publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
 publish_dialog.child_window(title = WORKSPACE).click_input()
 publish_dialog.Select.click()
