@@ -2,7 +2,7 @@ Power BI refresher
 ======
 Script for automation of refreshing Power BI workbooks.  Built on Python 3.6 and pywinauto.
 
-Developed for Power BI Desktop 2.53.4954.621 64-bit (December 2017) on Windows 10 with English and Czech locale. Other locales should work as well but they haven't been tested.
+Developed for Power BI Desktop 2.56.5023.1021 64-bit (March 2018) on Windows 10 with English locale.
 
 
 

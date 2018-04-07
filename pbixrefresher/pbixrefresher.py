@@ -53,7 +53,7 @@ def main():
 
 	# Refresh
 	print("Refreshing")
-	type_keys("%y01y14", win)
+	win.Refresh.click_input()
 	#wait_win_ready(win)
 	time.sleep(5)
 	win.wait("enabled", timeout = 300)
@@ -67,7 +67,7 @@ def main():
 
 	# Publish
 	print("Publish")
-	type_keys("%y01y25", win)
+	win.Publish.click_input()
 	publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
 	publish_dialog.child_window(title = WORKSPACE).click_input()
 	publish_dialog.Select.click()
@@ -88,8 +88,10 @@ def main():
 	for proc in psutil.process_iter():
 		if proc.name() == PROCNAME:
 			proc.kill()
-			
+
+		
 if __name__ == '__main__':
+	
 	main()
 
 
