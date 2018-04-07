@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pbixrefresher',
-      version='0.1.3',
+      version='0.1.4',
       description='Script for refreshing and publishing Power BI workbooks',
       url='https://github.com/dubravcik/pbixrefresher-python',
       author='Michal Dubravcik',
@@ -13,4 +13,7 @@ setup(name='pbixrefresher',
           'psutil'
       ],
       scripts=['pbixrefresher/pbixrefresher.py'],
+	  entry_points = {
+        "console_scripts": ['pbixrefresher = pbixrefresher:main']
+        },
       zip_safe=False)
