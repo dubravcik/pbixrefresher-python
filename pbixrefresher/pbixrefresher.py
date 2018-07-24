@@ -17,6 +17,7 @@ def main():
 	parser.add_argument("workbook", help = "Path to .pbix file")
 	parser.add_argument("--workspace", help = "name of online Power BI service work space to publish in", default = "My workspace")
 	parser.add_argument("--refresh-timeout", help = "refresh timeout", default = 30000)
+	parser.add_argument("--no-publish", dest='publish', help="don't publish, just save", default = True, action= 'store_false' )
 	parser.add_argument("--init-wait", help = "initial wait time on startup", default = 15)
 	args = parser.parse_args()
 
@@ -66,19 +67,20 @@ def main():
 	win.wait("enabled", timeout = 300)
 
 	# Publish
-	print("Publish")
-	win.Publish.click_input()
-	publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
-	publish_dialog.child_window(title = WORKSPACE).click_input()
-	publish_dialog.Select.click()
-	try:
-		win.Replace.wait('visible', timeout = 10)
-	except Exception:
-		pass
-	if win.Replace.exists():
-		win.Replace.click_input()
-	win["Got it"].wait('visible', timeout = REFRESH_TIMEOUT)
-	win["Got it"].click_input()
+	if args.publish:
+		print("Publish")
+		win.Publish.click_input()
+		publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
+		publish_dialog.child_window(title = WORKSPACE).click_input()
+		publish_dialog.Select.click()
+		try:
+			win.Replace.wait('visible', timeout = 10)
+		except Exception:
+			pass
+		if win.Replace.exists():
+			win.Replace.click_input()
+		win["Got it"].wait('visible', timeout = REFRESH_TIMEOUT)
+		win["Got it"].click_input()
 
 	#Close
 	print("Exiting")
