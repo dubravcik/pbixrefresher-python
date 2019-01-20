@@ -2,7 +2,7 @@ Power BI refresher
 ======
 Script for automation of refreshing Power BI workbooks.  Built on Python 3.6 and pywinauto.
 
-Developed for Power BI Desktop 2.56.5023.1021 64-bit (March 2018) on Windows 10 with English locale.
+Developed for Power BI Desktop 2.65.5313.1381 64-bit (December 2018) on Windows 10 with English locale.
 
 
 
@@ -22,6 +22,21 @@ pbixrefresher <WORKBOOK> [-workspace <WORKSPACE>]
 where <WORKBOOK> is path to .pbix file
       <WORKSPACE> is name of online Power BI service work space to publish in. Default is My workspace
 ```
+
+Scheduling in Windows Task Scheduler
+-----
+Please keep in mind that this script uses GUI of Power BI Desktop and it needs that a user is logged in Windows session. You should also deactivate lock screen time. Ideally you should schedule the script on a computer where the GUI is not used to not interfere the scripting, for example dedicated Virtual Machine.
+
+1. Open Task Scheduler
+2. Click Create Basic Task
+3. Fill a Name and click Next
+4. Set a trigger and click Next
+5. Pick Start a program as an action and click Next
+6. in Program/script type absolute path to pbixrefresher.exe in your scripts folder in Python installation path (for example "C:\ProgramData\Anaconda3\Scripts\pbixrefresher.exe")
+   in Arguments type file name of the workbook (for example "sample.pbix")
+   in Start in type absolute path workbook (for example "C:\workbooks\")
+7. Confirm and Finish
+
 
 See how it works
 -----
