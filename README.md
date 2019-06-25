@@ -17,10 +17,13 @@ pip install pbixrefresher
 Usage
 -----
 ```
-pbixrefresher <WORKBOOK> [-workspace <WORKSPACE>]
+pbixrefresher <WORKBOOK> [-workspace <WORKSPACE>] [--refresh-timeout <REFRESH_TIMEOUT>] [--no-publish]
 
 where <WORKBOOK> is path to .pbix file
-      <WORKSPACE> is name of online Power BI service work space to publish in. Default is My workspace
+      --workspace <text> is name of online Power BI service work space to publish in (default My workspace)
+      --refresh-timeout <number> is time in seconds to wait to refresh end (default 30000)
+      --no-publish is switch to just refresh and save the workbook and skip publishing to online service (default False)
+      --init-wait <number> is time to wait until Power BI Desktop starts (default 15)
 ```
 
 Scheduling in Windows Task Scheduler

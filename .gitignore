@@ -3,3 +3,5 @@ build
 pbix
 .vscode
 pbixrefresher.egg-info
+pypi.txt
+sample.pbix

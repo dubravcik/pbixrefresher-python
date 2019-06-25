@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 import argparse
 import psutil
 from pywinauto.application import Application
@@ -16,9 +17,9 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("workbook", help = "Path to .pbix file")
 	parser.add_argument("--workspace", help = "name of online Power BI service work space to publish in", default = "My workspace")
-	parser.add_argument("--refresh-timeout", help = "refresh timeout", default = 30000)
-	parser.add_argument("--no-publish", dest='publish', help="don't publish, just save", default = True, action= 'store_false' )
-	parser.add_argument("--init-wait", help = "initial wait time on startup", default = 15)
+	parser.add_argument("--refresh-timeout", help = "refresh timeout", default = 30000, type = int)
+	parser.add_argument("--no-publish", dest='publish', help="don't publish, just save", default = True, action = 'store_false' )
+	parser.add_argument("--init-wait", help = "initial wait time on startup", default = 15, type = int)
 	args = parser.parse_args()
 
 	timings.after_clickinput_wait = 1
@@ -38,6 +39,7 @@ def main():
 	# Start PBI and open the workbook
 	print("Starting Power BI")
 	os.system('start "" "' + WORKBOOK + '"')
+	print("Waiting ",INIT_WAIT,"sec")
 	time.sleep(INIT_WAIT)
 
 	# Connect pywinauto
@@ -57,14 +59,15 @@ def main():
 	win.Refresh.click_input()
 	#wait_win_ready(win)
 	time.sleep(5)
-	win.wait("enabled", timeout = 300)
+	print("Waiting for refresh end (timeout in ", REFRESH_TIMEOUT,"sec)")
+	win.wait("enabled", timeout = REFRESH_TIMEOUT)
 
 	# Save
 	print("Saving")
 	type_keys("%1", win)
 	#wait_win_ready(win)
 	time.sleep(5)
-	win.wait("enabled", timeout = 300)
+	win.wait("enabled", timeout = REFRESH_TIMEOUT)
 
 	# Publish
 	if args.publish:
@@ -93,8 +96,11 @@ def main():
 
 		
 if __name__ == '__main__':
-	
-	main()
+	try:
+		main()
+	except Exception as e:
+		print(e)
+		sys.exit(1)
 
 
 
