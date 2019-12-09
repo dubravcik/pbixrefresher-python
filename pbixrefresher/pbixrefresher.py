@@ -58,7 +58,7 @@ def main():
 	print("Refreshing")
 	win.Refresh.click_input()
 	#wait_win_ready(win)
-	time.sleep(5)
+	time.sleep(10)
 	print("Waiting for refresh end (timeout in ", REFRESH_TIMEOUT,"sec)")
 	win.wait("enabled", timeout = REFRESH_TIMEOUT)
 
@@ -74,7 +74,7 @@ def main():
 		print("Publish")
 		win.Publish.click_input()
 		publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
-		publish_dialog.child_window(title = WORKSPACE).click_input()
+		publish_dialog.child_window(title = WORKSPACE, found_index=0).click_input()
 		publish_dialog.Select.click()
 		try:
 			win.Replace.wait('visible', timeout = 10)
