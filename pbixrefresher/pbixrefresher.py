@@ -45,7 +45,7 @@ def main():
 	# Connect pywinauto
 	print("Identifying Power BI window")
 	app = Application(backend = 'uia').connect(path = PROCNAME)
-	win = app.window(title_re = '.*Power BI Desktop')
+	win = app[WORKBOOK]
 	time.sleep(5)
 	win.wait("enabled", timeout = 300)
 	win.Save.wait("enabled", timeout = 300)
@@ -74,7 +74,7 @@ def main():
 		print("Publish")
 		win.Publish.click_input()
 		publish_dialog = win.child_window(auto_id = "KoPublishToGroupDialog")
-		publish_dialog.child_window(title = WORKSPACE).click_input()
+		publish_dialog.child_window(title = WORKSPACE, control_type="DataItem" ).click_input()
 		publish_dialog.Select.click()
 		try:
 			win.Replace.wait('visible', timeout = 10)
